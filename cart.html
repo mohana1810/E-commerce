@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop | Cart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="loadCart()">
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="orders.html">Orders</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content cart-page-layout">
+    <h2>Your Shopping Cart</h2>
+    
+    <div id="cart-content-wrapper">
+      
+      <!-- 🛒 Cart Items Section -->
+      <div id="cart-items-section" class="cart-items-display">
+        <h3>🛒 Items in Cart</h3>
+        <div id="cart-container"></div>
+      </div>
+      
+      <!-- 💳 Order Summary Section -->
+      <div id="cart-summary" class="cart-summary-box">
+        <h3>Order Summary</h3>
+        <div id="cart-total" class="cart-total-summary"></div>
+        
+        <hr>
+
+        <!-- Hidden checkout step until “Proceed” is clicked -->
+        <div id="checkout-step-details" style="display:none;">
+          <div class="checkout-step">
+            <h4>1. Deliver to:</h4>
+            <div id="checkout-address-selection"></div>
+          </div>
+          
+          <div class="checkout-step">
+            <h4>2. Select Payment Method</h4>
+            <select id="payment-method" required>
+              <option value="">-- Choose Payment --</option>
+              <option value="cod">Cash on Delivery (COD)</option>
+              <option value="card">Credit/Debit Card (Simulated)</option>
+              <option value="upi">UPI (Simulated)</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="cart-actions">
+          <button id="proceed-btn" onclick="showCheckoutOptions()">Proceed to Checkout</button>
+          <button id="place-order-btn" onclick="checkAndPlaceOrder()" style="display:none;">Place Order</button>
+          <button id="clear-cart-btn" onclick="clearCart()">Clear All Items</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 🛍 Load Cart Items
+    function loadCart() {
+      const cartContainer = document.getElementById("cart-container");
+      const totalElement = document.getElementById("cart-total");
+      const proceedBtn = document.getElementById("proceed-btn"); 
+      const placeOrderBtn = document.getElementById("place-order-btn");
+      const clearCartBtn = document.getElementById("clear-cart-btn");
+      const checkoutDetails = document.getElementById('checkout-step-details');
+
+      checkoutDetails.style.display = 'none';
+      placeOrderBtn.style.display = 'none';
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<div class='empty-cart-message'><p>Your cart is empty! Start shopping now.</p></div>";
+        totalElement.innerHTML = "Subtotal: ₹0";
+        proceedBtn.style.display = "none";
+        clearCartBtn.style.display = "none";
+        return;
+      }
+
+      let total = 0;
+      let html = '<div class="cart-items-list">';
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div class="cart-item-row">
+            <span class="item-name">${item.name}</span>
+            <span class="item-price">₹${item.price.toLocaleString()}</span>
+            <button class="remove-item-btn" onclick="removeItem(${index})">Remove</button>
+          </div>
+        `;
+      });
+      html += '</div>';
+
+      cartContainer.innerHTML = html;
+      totalElement.innerHTML = `
+        <p>Items (${cart.length}): ₹${total.toLocaleString()}</p>
+        <hr>
+        <h4>Order Total: ₹${total.toLocaleString()}</h4>
+      `;
+      
+      proceedBtn.style.display = "block";
+      clearCartBtn.style.display = "block";
+    }
+
+    // 🧭 Proceed to Checkout
+    function showCheckoutOptions() {
+      const address = JSON.parse(localStorage.getItem('userAddress'));
+      const addressSelectionDiv = document.getElementById('checkout-address-selection');
+      const checkoutDetails = document.getElementById('checkout-step-details');
+      const proceedBtn = document.getElementById('proceed-btn');
+      const placeOrderBtn = document.getElementById('place-order-btn');
+
+      if (!address) {
+        alert("Please save a delivery address in your Profile before proceeding.");
+        window.location.href = "profile.html"; 
+        return;
+      }
+
+      addressSelectionDiv.innerHTML = `
+        <div class="saved-address-checkout">
+          <p>Deliver to:</p>
+          <strong>${address.line1}</strong>
+          <p>${address.city}, ${address.pincode}</p>
+        </div>
+      `;
+      
+      checkoutDetails.style.display = 'block';
+      proceedBtn.style.display = 'none';
+      placeOrderBtn.style.display = 'block';
+    }
+
+    // 🧾 Final Order Placement Trigger
+    function checkAndPlaceOrder() {
+      const paymentMethod = document.getElementById('payment-method').value;
+
+      if (!paymentMethod) {
+        alert("Please select a payment method.");
+        return;
+      }
+
+      // ✅ Call shared placeOrder() from script.js
+      placeOrder();
+    }
+
+    // 🔧 Cart Utility Functions
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (index > -1) {
+        const removedItem = cart[index].name;
+        cart.splice(index, 1); 
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(`${removedItem} removed from cart.`);
+        loadCart();
+      }
+    }
+
+    function clearCart() {
+      if (confirm("Are you sure you want to clear all items from your cart?")) {
+        localStorage.removeItem("cart");
+        alert("Cart cleared!");
+        loadCart();
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <!-- External Script with Product Data + placeOrder() -->
+  <script src="js/script.js"></script>
+</body>
+</html>

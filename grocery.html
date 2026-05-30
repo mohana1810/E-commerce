@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Shop | Grocery</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Grocery Items</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHVPnnzyHyaJqOv1Em8-3yRjkt41J8EZXv8Q&s" alt="Rice">
+        <h3>Basmati Rice (5kg)</h3>
+        <p>₹499</p>
+        <button onclick="addToCart('Basmati Rice', 499)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqSNsbNVTTAB0ujCpv5xXKBI1mAamqeyBw2Q&s" alt="Oil">
+        <h3>Sunflower Oil (1L)</h3>
+        <p>₹150</p>
+        <button onclick="addToCart('Sunflower Oil', 150)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBYjkJw4r8MXIzXJkSoVrs9y-7mXDvtoS8Ww&s" alt="Flour">
+        <h3>Wheat Flour (10kg)</h3>
+        <p>₹420</p>
+        <button onclick="addToCart('Wheat Flour', 420)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://2.wlimg.com/product_images/bc-500/2022/2/1657192/refined-white-sugar-1646031570-1299980.jpeg" alt="Sugar">
+        <h3>Refined Sugar (5kg)</h3>
+        <p>₹260</p>
+        <button onclick="addToCart('Refined Sugar', 260)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+<script>
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ name, price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+  }
+</script>
+</body>
+</html>
+	

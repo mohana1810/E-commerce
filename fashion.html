@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop | Fashion</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="orders.html">Orders</a>
+      <a href="cart.html">Cart</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Fashion</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhDCNsZtFGTW5e6GjVk_h-IHHWn4hQFN4vNA&s" alt="">
+        <h4>Men's T-Shirt</h4>
+        <p>₹499</p>
+        <button onclick="addToCart('Men\'s T-Shirt', 499)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg" alt="">
+        <h4>Women's Dress</h4>
+        <p>₹999</p>
+        <button onclick="addToCart('Women\'s Dress', 999)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://assets.ajio.com/medias/sys_master/root/20240722/dbbq/669e34346f60443f31982060/-473Wx593H-700216447-purple-MODEL.jpg" alt="">
+        <h4>Hand Bag</h4>
+        <p>₹2,999</p>
+        <button onclick="addToCart('Smart Watch', 2999)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVv-9cZwn49LYrpTmmOyXnXALZ_dHgdfqxmw&s" alt="">
+        <h4>Slippers</h4>
+        <p>₹899</p>
+        <button onclick="addToCart('Sunglasses', 899)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  </script>
+</body>
+</html>

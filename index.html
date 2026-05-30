@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Shop | Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="checkLogin()">
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search for products, brands, and more..." />
+      <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <nav>
+      <a href="profile.html" class="nav-item"><i class="fas fa-user"></i> Profile</a>
+      <a href="orders.html" class="nav-item"><i class="fas fa-box"></i> Orders</a>
+      <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Cart</a>
+      <a href="#" class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <section class="hero">
+      <div class="slider">
+        <img src="https://img.freepik.com/free-vector/online-shopping-banner-template_23-2148787138.jpg?w=1800" alt="Banner">
+      </div>
+    </section>
+    
+    <div id="dynamic-content">
+      
+      <section class="category-row">
+        <a href="fashion.html" class="category">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.6P2j7P9i-agl3ofpSp_tVAHaEo?cb=ucfimgc2" alt="Fashion">
+          <p>Fashion</p>
+        </a>
+        <a href="grocery.html" class="category">
+          <img src="https://wallpaperaccess.com/full/2792583.jpg" alt="Grocery">
+          <p>Grocery</p>
+        </a>
+        <a href="electronics.html" class="category">
+          <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="Electronics">
+          <p>Electronics</p>
+        </a>
+        <a href="appliances.html" class="category">
+          <img src="https://th.bing.com/th/id/OIP.10ehSfiTtKJ0xREbdzF-4gHaFA?o=7" alt="Appliances">
+          <p>Appliances</p>
+        </a>
+        <a href="homekitchen.html" class="category">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Home">
+          <p>Home & Kitchen</p>
+        </a>
+        <a href="beauty.html" class="category">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.sI-TElAvDKohsbmZo8gmaQHaEJ?cb=ucfimgc2" alt="Beauty">
+          <p>Beauty</p>
+        </a>
+      </section>
+      
+    </div>
+  </main>
+  
+
+
+  <footer>
+    <p>© 2025|E-Shop|Online-Store</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

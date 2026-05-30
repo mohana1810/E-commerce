@@ -1,0 +1,11 @@
+{
+  "name": "eshop-flipkart-clone",
+  "version": "1.0.0",
+  "description": "E-Shop Flipkart Clone Project with Login, Cart, Orders, and Categories",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server"
+  },
+  "author": "Tejasree",
+  "license": "ISC"
+}

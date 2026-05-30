@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop | Beauty</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="orders.html">Orders</a>
+      <a href="cart.html">Cart</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Beauty</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShC64-gaHiiKU2EOFjahM_8ppElr6hB1bMsg&s" alt="">
+        <h4>Makeup Kit</h4>
+        <p>₹1,499</p>
+        <button onclick="addToCart('Makeup Kit', 1499)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://bellavitaorganic.com/cdn/shop/files/Date_woman_100_ml_1.jpg?v=1728029584&width=500" alt="">
+        <h4>Perfume</h4>
+        <p>₹999</p>
+        <button onclick="addToCart('Perfume', 999)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChvoLX0UIdTVxWn6IdQmU7UNu0fUlEYjNcw&s" alt="">
+        <h4>Face Cream</h4>
+        <p>₹699</p>
+        <button onclick="addToCart('Face Cream', 699)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAr4oJL3m7JLKjVInSe-ffVIwzddlGTExfKA&s" alt="">
+        <h4>Hair Dryer</h4>
+        <p>₹1,999</p>
+        <button onclick="addToCart('Hair Dryer', 1999)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  </script>
+</body>
+</html>

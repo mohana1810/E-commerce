@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop | Orders</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="checkLogin(); loadOrders();">
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Your Orders</h2>
+    <div id="orders-container"></div>
+  </main>
+
+  <script>
+    function loadOrders() {
+      const ordersContainer = document.getElementById('orders-container');
+      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+      if (orders.length === 0) {
+        ordersContainer.innerHTML = "<p class='empty-cart-message'>You haven't placed any orders yet.</p>";
+        return;
+      }
+
+      let ordersHtml = '';
+
+      orders.forEach(order => {
+        let itemsListHtml = '';
+        let orderTotal = 0;
+
+        order.items.forEach(item => {
+          itemsListHtml += `<p class="order-item-detail">${item.name} - ₹${item.price.toLocaleString()}</p>`;
+          orderTotal += item.price;
+        });
+
+        ordersHtml += `
+          <div class="order-card">
+            <div class="order-header">
+              <h4>Order ID: #${order.id}</h4>
+              <span class="order-date">Date: ${order.date}</span>
+            </div>
+            <div class="order-body">
+              <h5>Items:</h5>
+              ${itemsListHtml}
+            </div>
+            <div class="order-footer">
+              <strong>Total: ₹${orderTotal.toLocaleString()}</strong>
+              <span class="payment-method">Paid via: ${order.payment ? order.payment.toUpperCase() : 'N/A'}</span>
+              <span class="order-status">Status: Delivered (Simulated)</span>
+            </div>
+          </div>
+        `;
+      });
+
+      ordersContainer.innerHTML = ordersHtml;
+    }
+  </script>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

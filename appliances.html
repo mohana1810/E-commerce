@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Shop | Appliances</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Home Appliances</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://media-ik.croma.com/prod/https://media.tatacroma.com/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/308169_nhjiel.png" alt="Washing Machine">
+        <h3>Washing Machine</h3>
+        <p>₹18,999</p>
+        <button onclick="addToCart('Washing Machine', 18999)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq6jsadTF4C8N-gE86YoOjqqItPTDVgyFW9Q&s" alt="Refrigerator">
+        <h3>Double Door Refrigerator</h3>
+        <p>₹24,999</p>
+        <button onclick="addToCart('Double Door Refrigerator', 24999)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU0CDsMriHBvsh4MS30QlaB2PdluggVsu51Q&s" alt="Microwave">
+        <h3>Microwave Oven</h3>
+        <p>₹8,999</p>
+        <button onclick="addToCart('Microwave Oven', 8999)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdarOXHWZ8yXm6Xo9STS_AVkxOgS37Iv_ybA&s" alt="Air Conditioner">
+        <h3>Air Conditioner</h3>
+        <p>₹32,499</p>
+        <button onclick="addToCart('Air Conditioner', 32499)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  </script>
+</body>
+</html>

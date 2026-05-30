@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shop | Electronics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">E-Shop</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="orders.html">Orders</a>
+      <a href="cart.html">Cart</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <h2>Electronics</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="">
+        <h4>HP Laptop</h4>
+        <p>₹65,999</p>
+        <button onclick="addToCart('HP Laptop', 65999)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNUUO3cpX28CAALIB3iyG662Wb5iSuyCwMQ&s" alt="">
+        <h4>Gaming Console</h4>
+        <p>₹35,000</p>
+        <button onclick="addToCart('Gaming Console', 35000)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmlZ0wXZFgfZcDnizdx5a9oTNGppUCh0kfw&s" alt="">
+        <h4>Wireless Headphones</h4>
+        <p>₹1,499</p>
+        <button onclick="addToCart('Wireless Headphones', 1499)">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" alt="">
+        <h4>Bluetooth Speaker</h4>
+        <p>₹1,299</p>
+        <button onclick="addToCart('Bluetooth Speaker', 1299)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  </script>
+</body>
+</html>
